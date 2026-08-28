@@ -21,7 +21,7 @@ function esc(s) {
   }[c]));
 }
 
-// 재전송 남용 방지용 임시 키 — IP는 해시로만, 30초 뒤 자동 삭제 (내용과 연결되지 않음)
+// 재전송 남용 방지용 임시 키 — IP는 해시로만, 60초 뒤 자동 삭제 (내용과 연결되지 않음)
 async function rateKey(request) {
   const ip = request.headers.get("CF-Connecting-IP") || "unknown";
   const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode("reqbox|" + ip));
@@ -49,7 +49,7 @@ export default {
 
       const rl = await rateKey(request);
       if (await env.REQUESTS.get(rl)) return json({ ok: false, error: "rate" }, 429);
-      await env.REQUESTS.put(rl, "1", { expirationTtl: 30 });
+      await env.REQUESTS.put(rl, "1", { expirationTtl: 60 });
 
       const key = "req:" + new Date().toISOString() + ":" + crypto.randomUUID().slice(0, 8);
       await env.REQUESTS.put(key, JSON.stringify({ text, ts: Date.now() }));
