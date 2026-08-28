@@ -3,22 +3,87 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>jangjeh.github.io</title>
+<title>jangjeh.github.io — Data Dashboards</title>
 <style>
-  body{font-family:-apple-system,"Segoe UI",Roboto,"Malgun Gothic",sans-serif;background:#F5F7F8;color:#0A2233;
-       display:flex;min-height:100vh;align-items:center;justify-content:center;margin:0;}
-  main{text-align:center;}
-  h1{font-size:20px;font-weight:600;}
-  a{display:block;margin:10px 0;padding:12px 28px;border:1px solid #DCE3E7;border-radius:10px;
-    background:#fff;color:#0A2233;text-decoration:none;font-size:15px;}
-  a:hover{border-color:#1AA7BE;color:#1AA7BE;}
+  :root{
+    --navy:#0A2233; --cyan:#1AA7BE; --bg:#F5F7F8; --card:#FFFFFF;
+    --line:#DCE3E7; --muted:#5B7183;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--navy);
+       font-family:-apple-system,"Segoe UI",Roboto,"Malgun Gothic",sans-serif;
+       -webkit-font-smoothing:antialiased;}
+  header{background:var(--navy);color:#fff;padding:40px 24px 34px;}
+  .wrap{max-width:960px;margin:0 auto;}
+  header h1{margin:0;font-size:22px;font-weight:600;letter-spacing:-.01em;}
+  header p{margin:8px 0 0;font-size:14px;color:#9FB6C6;}
+  main{padding:32px 24px 56px;}
+  .grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));}
+  a.card{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;
+         padding:18px 20px;text-decoration:none;color:inherit;transition:border-color .15s,box-shadow .15s;}
+  a.card:hover{border-color:var(--cyan);box-shadow:0 2px 10px rgba(10,34,51,.07);}
+  .tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.04em;
+       color:var(--cyan);text-transform:uppercase;margin-bottom:8px;}
+  .card h2{margin:0 0 6px;font-size:15px;font-weight:600;line-height:1.4;}
+  .card p{margin:0;font-size:13px;line-height:1.55;color:var(--muted);}
+  footer{border-top:1px solid var(--line);padding:20px 24px;font-size:12px;color:var(--muted);}
+  footer a{color:var(--muted);}
 </style>
 </head>
 <body>
+
+<header>
+  <div class="wrap">
+    <h1>Data Dashboards</h1>
+    <p>jangjeh · 리서치 대시보드 모음</p>
+  </div>
+</header>
+
 <main>
-  <h1>Data Dashboards</h1>
-  <a href="/data/euimport/">EU Trade Monitor — 수입 (Imports)</a>
-  <a href="/data/euexport/">EU Trade Monitor — 수출 (Exports)</a>
+  <div class="wrap grid">
+
+    <a class="card" href="/data/">
+      <span class="tag">Subsea Cable</span>
+      <h2>Meritz Cable Intelligence</h2>
+      <p>해저케이블 부설 선단(CLV)과 용선 시장 인텔리전스 — grid / interconnection 프로젝트 추적.</p>
+    </a>
+
+    <a class="card" href="/data/euimport/">
+      <span class="tag">EU Trade</span>
+      <h2>EU Trade Monitor — 수입 (Imports)</h2>
+      <p>Eurostat Comext 기반 EU 수입 흐름 모니터.</p>
+    </a>
+
+    <a class="card" href="/data/euexport/">
+      <span class="tag">EU Trade</span>
+      <h2>EU Trade Monitor — 수출 (Exports)</h2>
+      <p>Eurostat Comext 기반 EU 수출 흐름 모니터.</p>
+    </a>
+
+    <a class="card" href="/data/us_trade_dashboard.html">
+      <span class="tag">US Trade</span>
+      <h2>미국 수입 무역 대시보드</h2>
+      <p>26개 품목 그룹별 미국 수입 규모·추이 분석.</p>
+    </a>
+
+    <a class="card" href="/data/lowpbr.html">
+      <span class="tag">Equity Screener</span>
+      <h2>저PBR 스크리너</h2>
+      <p>2026년 세제개편안에 따른 저PBR 기업 선정 — 산정 논리·필터·종목 리스트.</p>
+    </a>
+
+    <a class="card" href="/data/hyundai/">
+      <span class="tag">Ownership</span>
+      <h2>현대차그룹 순환출자 구조</h2>
+      <p>순환출자 3고리, 상장 7개사 시가총액, 정몽구 지분 상속세 시뮬레이션.</p>
+    </a>
+
+  </div>
 </main>
+
+<footer>
+  <div class="wrap">대시보드 원본은 <a href="https://github.com/jangjeh/data">jangjeh/data</a> 저장소에 있습니다.</div>
+</footer>
+
 </body>
 </html>
