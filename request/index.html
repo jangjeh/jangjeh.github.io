@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>익명 요청함</title>
+<style>
+  :root{
+    --navy:#0A2233; --cyan:#1AA7BE; --bg:#F5F7F8; --card:#FFFFFF;
+    --line:#DCE3E7; --muted:#5B7183;
+  }
+  *{box-sizing:border-box;}
+  html,body{height:100%;}
+  body{margin:0;background:var(--bg);color:var(--navy);
+       font-family:-apple-system,"Segoe UI",Roboto,"Malgun Gothic",sans-serif;
+       -webkit-font-smoothing:antialiased;
+       display:flex;align-items:center;justify-content:center;padding:24px;}
+  form{width:100%;max-width:640px;}
+  textarea{width:100%;height:300px;resize:vertical;
+           background:var(--card);border:1px solid var(--line);border-radius:12px;
+           padding:20px;font:inherit;font-size:15px;line-height:1.7;color:var(--navy);
+           outline:none;transition:border-color .15s,box-shadow .15s;}
+  textarea:focus{border-color:var(--cyan);box-shadow:0 2px 12px rgba(10,34,51,.08);}
+  textarea::placeholder{color:#A7B6C2;}
+  .row{display:flex;align-items:center;justify-content:flex-end;gap:14px;margin-top:12px;}
+  .status{font-size:13px;color:var(--muted);margin-right:auto;}
+  .status.ok{color:var(--cyan);}
+  button{background:var(--navy);color:#fff;border:0;border-radius:10px;
+         padding:10px 22px;font:inherit;font-size:14px;font-weight:600;cursor:pointer;}
+  button:hover{background:#123349;}
+  button:disabled{opacity:.5;cursor:default;}
+</style>
+</head>
+<body>
+
+<form id="f">
+  <textarea id="t" maxlength="4000" placeholder="요청사항을 입력하세요. 모든 요청은 익명으로 운영자에게 접수되며, 흥미로워 보인다면 무엇이든 만들어 드립니다"></textarea>
+  <div class="row">
+    <span class="status" id="s"></span>
+    <button type="submit" id="b">보내기</button>
+  </div>
+</form>
+
+<script>
+(function(){
+  var f=document.getElementById('f'), t=document.getElementById('t'),
+      b=document.getElementById('b'), s=document.getElementById('s');
+  f.addEventListener('submit', function(e){
+    e.preventDefault();
+    var text=t.value.trim();
+    if(!text) return;
+    b.disabled=true; s.className='status'; s.textContent='전송 중...';
+    fetch('https://jaehyeok.fyi/api/request', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({text:text})
+    }).then(function(r){ return r.json().catch(function(){ return {ok:false}; }); })
+      .then(function(d){
+        if(d.ok){ t.value=''; s.className='status ok'; s.textContent='익명으로 접수되었습니다. 감사합니다.'; }
+        else if(d.error==='rate'){ s.textContent='잠시 후 다시 시도해 주세요.'; }
+        else { s.textContent='전송에 실패했습니다. 잠시 후 다시 시도해 주세요.'; }
+      })
+      .catch(function(){ s.textContent='전송에 실패했습니다. 네트워크를 확인해 주세요.'; })
+      .finally(function(){ b.disabled=false; });
+  });
+})();
+</script>
+
+</body>
+</html>

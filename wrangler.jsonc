@@ -1,5 +1,6 @@
 {
   "name": "landing",
+  "main": "worker.js",
   "compatibility_date": "2026-08-01",
   "routes": [
     { "pattern": "jaehyeok.fyi", "custom_domain": true },
@@ -7,5 +8,8 @@
   ],
   "assets": {
     "directory": "."
-  }
+  },
+  "kv_namespaces": [
+    { "binding": "REQUESTS", "id": "2bcfb5f1ecb44c9c93654031ecbd15d0" }
+  ]
 }
