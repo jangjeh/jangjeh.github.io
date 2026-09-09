@@ -19,14 +19,20 @@
   header .wrap{display:flex;align-items:baseline;justify-content:space-between;gap:8px 16px;flex-wrap:wrap;}
   header h1{margin:0;font-size:22px;font-weight:600;letter-spacing:-.01em;}
   .credit{margin:0;font-size:11px;color:#9FB6C6;}
-  main{padding:32px 24px 56px;}
+  main{padding:28px 24px 56px;}
+  section{margin-bottom:34px;}
+  section:last-child{margin-bottom:0;}
+  .sec-head{display:flex;align-items:center;gap:12px;margin:0 0 12px;}
+  .sec-head h2{margin:0;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--navy);white-space:nowrap;}
+  .sec-head .sub{font-size:12px;color:var(--muted);white-space:nowrap;}
+  .sec-head::after{content:"";flex:1;height:1px;background:var(--line);}
   .grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));grid-auto-rows:1fr;}
   a.card{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;
          padding:18px 20px;text-decoration:none;color:inherit;transition:border-color .15s,box-shadow .15s;}
   a.card:hover{border-color:var(--cyan);box-shadow:0 2px 10px rgba(10,34,51,.07);}
   .tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.04em;
        color:var(--cyan);text-transform:uppercase;margin-bottom:8px;}
-  .card h2{margin:0 0 6px;font-size:15px;font-weight:600;line-height:1.4;}
+  .card h3{margin:0 0 6px;font-size:15px;font-weight:600;line-height:1.4;}
   .card p{margin:0;font-size:13px;line-height:1.55;color:var(--muted);}
 </style>
 </head>
@@ -40,73 +46,98 @@
 </header>
 
 <main>
-  <div class="wrap grid">
+  <div class="wrap">
 
-    <a class="card" href="https://grid.jaehyeok.fyi/">
-      <span class="tag">Subsea Cable</span>
-      <h2>Cable Intelligence</h2>
-      <p>미국, 유럽 grid/interconnection 프로젝트와 해저케이블 포설선(Cable Laying Vessel) Data Intelligence</p>
-    </a>
+    <section id="grid">
+      <div class="sec-head"><h2>Grid</h2><span class="sub">전력망 · 해저케이블</span></div>
+      <div class="grid">
+        <a class="card" href="https://grid.jaehyeok.fyi/">
+          <span class="tag">Subsea Cable</span>
+          <h3>Cable Intelligence</h3>
+          <p>미국, 유럽 grid/interconnection 프로젝트와 해저케이블 포설선(Cable Laying Vessel) Data Intelligence</p>
+        </a>
+      </div>
+    </section>
 
-    <a class="card" href="https://trade.jaehyeok.fyi/euimport/">
-      <span class="tag">EU Trade</span>
-      <h2>EU Trade Monitor — 수입 (Imports)</h2>
-      <p>Eurostat Comext 기반 수입데이터</p>
-    </a>
+    <section id="trade">
+      <div class="sec-head"><h2>Trade Data</h2><span class="sub">유럽 · 미국 무역데이터</span></div>
+      <div class="grid">
+        <a class="card" href="https://trade.jaehyeok.fyi/euimport/">
+          <span class="tag">EU Trade</span>
+          <h3>EU Trade Monitor — 수입 (Imports)</h3>
+          <p>Eurostat Comext 기반 수입데이터</p>
+        </a>
+        <a class="card" href="https://trade.jaehyeok.fyi/euexport/">
+          <span class="tag">EU Trade</span>
+          <h3>EU Trade Monitor — 수출 (Exports)</h3>
+          <p>Eurostat Comext 기반 수출데이터</p>
+        </a>
+        <a class="card" href="https://trade.jaehyeok.fyi/usimport/">
+          <span class="tag">US Trade</span>
+          <h3>US Trade Monitor — 수입 (Imports)</h3>
+          <p>USITC Dataweb 기반 수입데이터</p>
+        </a>
+      </div>
+    </section>
 
-    <a class="card" href="https://trade.jaehyeok.fyi/euexport/">
-      <span class="tag">EU Trade</span>
-      <h2>EU Trade Monitor — 수출 (Exports)</h2>
-      <p>Eurostat Comext 기반 수출데이터</p>
-    </a>
+    <section id="issue">
+      <div class="sec-head"><h2>Issue</h2><span class="sub">이슈별 단발 분석</span></div>
+      <div class="grid">
+        <a class="card" href="https://issue.jaehyeok.fyi/lowpbr/">
+          <span class="tag">Equity Screener</span>
+          <h3>저PBR 스크리너</h3>
+          <p>2026년 세제개편안에 따른 저PBR 기업 선정 — 산정 논리·필터·종목 리스트.</p>
+        </a>
+        <a class="card" href="https://issue.jaehyeok.fyi/hyundai/">
+          <span class="tag">Ownership</span>
+          <h3>현대차그룹 순환출자 구조</h3>
+          <p>순환출자 3고리, 상장 7개사 시가총액, 정몽구 지분 상속세 시뮬레이션.</p>
+        </a>
+        <a class="card" href="https://issue.jaehyeok.fyi/koreazinc/">
+          <span class="tag">Investment</span>
+          <h3>고려아연 미국 제련소 투자 및 자금조달비용</h3>
+          <p>고려아연 미국 제련소(Crucible Metals) $7.43bn 투자 구조 및 예상 금융비용</p>
+        </a>
+        <a class="card" href="https://issue.jaehyeok.fyi/copper/cu_univ.html">
+          <span class="tag">Copper Beta</span>
+          <h3>Copper Price vs Copper Stocks</h3>
+          <p>LME·COMEX·SHFE 구리 가격과 구리 ETF/광산주 32종의 주간 시계열 비교</p>
+        </a>
+      </div>
+    </section>
 
-    <a class="card" href="https://trade.jaehyeok.fyi/usimport/">
-      <span class="tag">US Trade</span>
-      <h2>US Trade Monitor — 수입 (Imports)</h2>
-      <p>USITC Dataweb 기반 수입데이터</p>
-    </a>
+    <section id="metal">
+      <div class="sec-head"><h2>Metal</h2><span class="sub">광물자원 가격</span></div>
+      <div class="grid">
+        <a class="card" href="https://metal.jaehyeok.fyi/komis/">
+          <span class="tag">KOMIS</span>
+          <h3>KOMIS 광물자원가격</h3>
+          <p>한국광해광업공단 KOMIS 광물자원가격 일별 수집 — 비철금속·희소금속·철광석·에너지·귀금속 시세 개요 및 상세 시계열</p>
+        </a>
+      </div>
+    </section>
 
-    <a class="card" href="https://issue.jaehyeok.fyi/lowpbr/">
-      <span class="tag">Equity Screener</span>
-      <h2>저PBR 스크리너</h2>
-      <p>2026년 세제개편안에 따른 저PBR 기업 선정 — 산정 논리·필터·종목 리스트.</p>
-    </a>
+    <section id="longform">
+      <div class="sec-head"><h2>Long Form</h2><span class="sub">보고서 번역</span></div>
+      <div class="grid">
+        <a class="card" href="https://issue.jaehyeok.fyi/copper/">
+          <span class="tag">Copper Report</span>
+          <h3>Copper in the Age of AI (2026)</h3>
+          <p>S&amp;P Global 'Copper in the Age of AI' (2026.01) 한글 번역본</p>
+        </a>
+      </div>
+    </section>
 
-    <a class="card" href="https://issue.jaehyeok.fyi/hyundai/">
-      <span class="tag">Ownership</span>
-      <h2>현대차그룹 순환출자 구조</h2>
-      <p>순환출자 3고리, 상장 7개사 시가총액, 정몽구 지분 상속세 시뮬레이션.</p>
-    </a>
-
-    <a class="card" href="https://issue.jaehyeok.fyi/koreazinc/">
-      <span class="tag">Investment</span>
-      <h2>고려아연 미국 제련소 투자 및 자금조달비용</h2>
-      <p>고려아연 미국 제련소(Crucible Metals) $7.43bn 투자 구조 및 예상 금융비용</p>
-    </a>
-
-    <a class="card" href="https://issue.jaehyeok.fyi/copper/">
-      <span class="tag">Copper Report</span>
-      <h2>Copper in the Age of AI (2026)</h2>
-      <p>S&amp;P Global 'Copper in the Age of AI' (2026.01) 한글 번역본</p>
-    </a>
-
-    <a class="card" href="https://issue.jaehyeok.fyi/copper/cu_univ.html">
-      <span class="tag">Copper Beta</span>
-      <h2>Copper Price vs Copper Stocks</h2>
-      <p>LME·COMEX·SHFE 구리 가격과 구리 ETF/광산주 32종의 주간 시계열 비교</p>
-    </a>
-
-    <a class="card" href="https://issue.jaehyeok.fyi/metals/">
-      <span class="tag">Gold · Silver · FX</span>
-      <h2>금·은 가격 &amp; 원/달러 환율</h2>
-      <p>금·은 일별 가격과 원/달러 환율 — 주간/월/분기/분기(M-1) 평균, USD·KRW 전환, 증감률 테이블</p>
-    </a>
-
-    <a class="card" href="/request/">
-      <span class="tag">Request</span>
-      <h2>익명 요청함</h2>
-      <p>만들고 싶은 것, 알고 싶은 것들을 익명으로 요청하세요. 흥미로워 보인다면 무엇이든 만들어 볼게요</p>
-    </a>
+    <section id="request">
+      <div class="sec-head"><h2>Request</h2></div>
+      <div class="grid">
+        <a class="card" href="/request/">
+          <span class="tag">Request</span>
+          <h3>익명 요청함</h3>
+          <p>만들고 싶은 것, 알고 싶은 것들을 익명으로 요청하세요. 흥미로워 보인다면 무엇이든 만들어 볼게요</p>
+        </a>
+      </div>
+    </section>
 
   </div>
 </main>
