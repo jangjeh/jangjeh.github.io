@@ -37,6 +37,8 @@
        color:var(--cyan);text-transform:uppercase;margin-bottom:8px;}
   .card h3{margin:0 0 6px;font-size:15px;font-weight:600;line-height:1.4;}
   .card p{margin:0;font-size:13px;line-height:1.55;color:var(--muted);}
+  .secret{display:none !important;}
+  html.reveal .secret{display:block !important;}
 </style>
 </head>
 <body>
@@ -137,6 +139,10 @@
     <section id="longform">
       <div class="sec-head"><h2>Long Form</h2><span class="sub">논문·리포트 번역 · <a href="https://pdf.jaehyeok.fyi/">전체 목록</a></span></div>
       <div class="grid">
+        <a class="card secret" href="https://pdf.jaehyeok.fyi/phai/">
+          <span class="tag">Physical SI</span>
+          <h3>Physical SI 사전학습</h3>
+        </a>
         <a class="card" href="https://pdf.jaehyeok.fyi/spotstudy/KOR/">
           <span class="tag">Research</span>
           <h3>리서치 보고서 한국어 번역 모음</h3>
@@ -180,5 +186,23 @@
   </div>
 </footer>
 
+<script>
+// 숨김 카드: 영문 'phai'(한글 자판 'ㅔㅗㅁㅑ') 타이핑 또는 제목 5번 연속 탭으로 토글
+(function(){
+  var KEY='phai-reveal', CODES=['phai','ㅔㅗㅁㅑ'], buf='', root=document.documentElement;
+  function toggle(){var on=!root.classList.contains('reveal');root.classList.toggle('reveal',on);
+    try{on?localStorage.setItem(KEY,'1'):localStorage.removeItem(KEY);}catch(e){}}
+  try{if(localStorage.getItem(KEY))root.classList.add('reveal');}catch(e){}
+  document.addEventListener('keydown',function(e){
+    var t=e.target;if(t&&(t.tagName==='INPUT'||t.tagName==='TEXTAREA'||t.isContentEditable))return;
+    if(!e.key||e.key.length!==1)return;
+    buf=(buf+e.key.toLowerCase()).slice(-4);
+    if(CODES.indexOf(buf)>=0){buf='';toggle();}
+  });
+  var taps=0,timer,h=document.querySelector('header h1');
+  if(h)h.addEventListener('click',function(){taps++;clearTimeout(timer);
+    timer=setTimeout(function(){taps=0;},1500);if(taps>=5){taps=0;toggle();}});
+})();
+</script>
 </body>
 </html>
